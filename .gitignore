@@ -1,3 +1,5 @@
 airflow/dags
 airflow/logs
 airflow/plugins
+
+spark/scripts
