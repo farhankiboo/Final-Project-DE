@@ -2,7 +2,8 @@ version: '3'
 
 services:
   spark:
-    image: docker.io/bitnami/spark:3.3
+    image: docker.io/bitnami/spark:3.2
+    build: .
     hostname: spark
     networks:
       - default_network
@@ -19,7 +20,8 @@ services:
       - '8081:8080'
   
   spark-worker:
-    image: docker.io/bitnami/spark:3.3
+    image: docker.io/bitnami/spark:3.2
+    build: .
     networks:
       - default_network
     volumes:
