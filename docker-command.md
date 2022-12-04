@@ -26,5 +26,5 @@ docker run --name postgres-ds9 --network=default_network -e POSTGRES_PASSWORD=an
 
 # mysql
 ``
-docker run --name mysql-ds9 --network=default_network -e MYSQL_ROOT_PASSWORD=anypassword -p 3306:3306 -d mysql
+docker run --name mysql-ds9 --network=default_network --hostname mysql -e MYSQL_ROOT_PASSWORD=anypassword -p 3306:3306 -d mysql
 ``
