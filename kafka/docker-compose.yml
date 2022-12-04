@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   zookeeper:
     image: wurstmeister/zookeeper
@@ -9,14 +9,13 @@ services:
     restart: unless-stopped
 
   kafka:
-    build: .
+    image: wurstmeister/kafka
     networks:
       - default_network
     ports:
-      - "9092"
+      - "9092:9092"
     environment:
-      DOCKER_API_VERSION: 1.22
-      KAFKA_ADVERTISED_HOST_NAME: 192.168.99.100
+      KAFKA_ADVERTISED_HOST_NAME: localhost
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_CREATE_TOPICS: "TopicCurrency:1:1"
     volumes:

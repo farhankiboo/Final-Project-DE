@@ -1,7 +1,7 @@
 # init docker
 ## create docker network
 ``
-docker network default_network
+docker network create default_network
 ``
 
 # airflow
