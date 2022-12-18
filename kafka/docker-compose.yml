@@ -25,3 +25,38 @@ services:
 networks:
   default_network:
     name: default_network
+
+
+  producer:
+    build: ./producer
+    restart: always
+    environment:
+      - KAFKA_HOST=${KAFKA_HOST}
+      - KAFKA_TOPIC=${KAFKA_TOPIC}
+    volumes:
+      - ./producer/main.py:/app/main.py
+    # command: python main.py --worker 5 --bootstrap-servers kafka:9092 --topic TopicCurrency
+    command: ["sleep", "infinity"]
+    depends_on:
+      - kafka
+
+  consumer:
+    build: ./consumer
+    restart: always
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_USER}
+      - KAFKA_HOST=${KAFKA_HOST}
+      - KAFKA_TOPIC=${KAFKA_TOPIC}
+    volumes:
+      - ./consumer/main.py:/app/main.python
+    # command: python main.py
+    command: ["sleep", "infinity"]
+    depends_on:
+      - kafka
+      
+  networks:
+    default_network:
+    name: default_network
